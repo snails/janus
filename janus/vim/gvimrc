@@ -1,0 +1,64 @@
+if filereadable(expand("~/.gvimrc.before"))
+  source ~/.gvimrc.before
+endif
+
+" CtrlP OS-X Menu remapping
+if janus#is_plugin_enabled('ctrlp') && has("gui_macvim")
+  macmenu &File.New\ Tab key=<D-S-t>
+endif
+
+if filereadable(expand("~/.gvimrc.after"))
+  source ~/.gvimrc.after
+endif
+
+
+"Zen Coding配置展开快捷键
+"let g:user_zen_expandabbr_key = '<D-e>'
+"let g:use_zen_complete_tag = 1
+"zencoding-goto-next-point <C-Y>n
+"zencoding-goto-previous-point <C-Y>N
+"zencoding-update-image-size <C-Y>i
+"Merge Lines:Select lines and type J
+"zencoding-remove-tag <C-Y>k
+"zencoding-split-join-tag <C-Y>j
+"zencoding-toggle-comment <C-Y>/
+"zencoding-make-anchor-url <C-Y>a
+
+" 自动完成设置 禁止在插入模式移动的时候出现 Complete 提示
+let g:acp_mappingDriven = 1
+
+" 窗口区域切换,F5 后 ←→  来切换
+imap <silent> <C-left> <esc><C-W><left>
+vmap <silent> <C-left> <esc><C-W><left>
+nmap <silent> <C-left> <C-W><left>
+imap <silent> <C-right> <esc><C-W><right>
+vmap <silent> <C-right> <esc><C-W><right>
+nmap <silent> <C-right> <C-W><right>
+
+"自动切换目录
+set autochdir
+
+"在gvim启动的时候开启tab
+let g:nerdtree_tabs_open_on_gui_startup = 1
+"On startup, focus NERDTree if opening a directory, focus file if opening a file.
+let g:nerdtree_tabs_smart_startup_focus = 1
+"Open NERDTree on new tab creation (if NERDTree was globally opened by :NERDTreeTabsToggle)
+let g:nerdtree_tabs_open_on_new_tab = 1  
+"Unfocus NERDTree when leaving a tab for descriptive tab names
+let g:nerdtree_tabs_meaningful_tab_names = 1  
+"Close current tab if there is only one window in it and it's NERDTree
+let g:nerdtree_tabs_autoclose = 1  
+"Synchronize view of all NERDTree windows (scroll and cursor position)
+let g:nerdtree_tabs_synchronize_view = 1 
+"When switching into a tab, make sure that focus is on the file window, not in the NERDTree window. (Note that this can get annoying if you use NERDTree's feature "open in new tab silently", as you will lose focus on the NERDTree.)
+let g:nerdtree_tabs_focus_on_files = 0  
+
+"设置CtrlP的搜索路径
+let g:ctrlp_working_path_mode = 2
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*   " for Linux/MacOSX
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+  \ 'file': '\.exe$\|\.so$\|\.dll$',
+  \ 'link': 'bad_symbolic_link',
+  \ }
+
